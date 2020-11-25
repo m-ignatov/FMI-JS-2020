@@ -30,9 +30,8 @@ function readFile(fileName) {
 
 function writeFile(data, path) {
   return new Promise((resolve, reject) => {
-    fs.writeFile(path, JSON.stringify(data), { encoding: 'utf-8' }, (error) => {
-      error ? reject(error) : resolve(`Data saved to ${path}`);
-    })
+    fs.writeFile(path, JSON.stringify(data), { encoding: 'utf-8' },
+      (error) => error ? reject(error) : resolve(`Data saved to ${path}`))
   });
 }
 
@@ -80,6 +79,7 @@ function buildStudentsMap(studentsData) {
 
 function buildGradesMap(gradesData) {
   let grades = {};
+
   gradesData = gradesData.map(grade => grade.replace('xxx', '0.0'));
 
   gradesData.map(grade => {
@@ -96,12 +96,13 @@ function buildGradesMap(gradesData) {
 
 function buildCreditsMap(creditsData) {
   let credits = {};
+
+  const subjectsList = creditsData[0].split(' ');
   const creditsList = creditsData[1].split(' ');
 
-  creditsData[0].split(' ').map((subject, index) => {
-    credits[index] = {};
-    credits[index].name = subject;
-    credits[index].credits = parseFloat(creditsList[index]);
+  subjectsList.map((subject, index) => {
+    const credit = parseFloat(creditsList[index]);
+    credits[index] = { name: subject, credits: credit };
   });
 
   return credits;

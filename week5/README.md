@@ -36,5 +36,3 @@ isDeepEqual({ prop: [1, 2, 3] }, { prop: [1, 2, 3] }); // true
 isDeepEqual({ prop: [1, 2, 3] }, { prop: [1, 2, 3, 4] }); // false
 // ...
 ```
-
-1. Реализирайте `Promise` сами :D
