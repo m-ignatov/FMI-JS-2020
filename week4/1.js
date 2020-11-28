@@ -68,7 +68,7 @@ function prepareData(data) {
 function buildStudentsMap(studentsData) {
   let students = {};
 
-  studentsData.map(student => {
+  studentsData.forEach(student => {
     const name = student.substring(0, student.lastIndexOf(' '));
     const facultyNumber = student.substring(student.lastIndexOf(' ') + 1, student.length);
     students[facultyNumber] = name;
@@ -82,7 +82,7 @@ function buildGradesMap(gradesData) {
 
   gradesData = gradesData.map(grade => grade.replace('xxx', '0.0'));
 
-  gradesData.map(grade => {
+  gradesData.forEach(grade => {
     const facultyNumber = grade.substring(0, grade.indexOf(' '));
     const gradeList = grade.substring(grade.indexOf(' ') + 1, grade.length)
       .split(' ')
@@ -100,7 +100,7 @@ function buildCreditsMap(creditsData) {
   const subjectsList = creditsData[0].split(' ');
   const creditsList = creditsData[1].split(' ');
 
-  subjectsList.map((subject, index) => {
+  subjectsList.forEach((subject, index) => {
     const credit = parseFloat(creditsList[index]);
     credits[index] = { name: subject, credits: credit };
   });
